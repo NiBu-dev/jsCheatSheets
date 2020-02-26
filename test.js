@@ -1,17 +1,21 @@
-function f() {
-    var result = [];
-    for (var i = 0; i<3; i++) {
-        (function () {
-            var pos = i;
-            var func = function () {
-                return pos;
-            }
-            result.push(func)
-        }())
+var jane = {
+    name: 'jane',
+    sayHelloTo: function (otherName) {
+        // 'use strict'
+        console.log(this.name + ' says hello to ' + otherName)
     }
-    return result;
+};
+
+var obj = {
+    name: 'jane',
+    friends: ['Tarzan', 'Cheeta'],
+    loop: function () {
+        this.friends.forEach(
+            function(friend) {
+                console.log(this.name + ' knows ' + friend )
+            }, this
+        )
+    }
 }
 
-console.log(f()[0]());
-console.log(f()[1]());
-console.log(f()[2]());
+obj.loop() // jane knows Tarzan \n jane knows Cheeta
