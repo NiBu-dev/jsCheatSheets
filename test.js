@@ -1,21 +1,13 @@
-var jane = {
-    name: 'jane',
-    sayHelloTo: function (otherName) {
-        // 'use strict'
-        console.log(this.name + ' says hello to ' + otherName)
+class Memem {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
-};
 
-var obj = {
-    name: 'jane',
-    friends: ['Tarzan', 'Cheeta'],
-    loop: function () {
-        this.friends.forEach(
-            function(friend) {
-                console.log(this.name + ' knows ' + friend )
-            }, this
-        )
+    sayHay() {
+        return `I am ${this.name} and I am ${this.age} year old`
     }
 }
 
-obj.loop() // jane knows Tarzan \n jane knows Cheeta
+const someMeme = new Memem('Igor', 19);
+console.log(someMeme)
