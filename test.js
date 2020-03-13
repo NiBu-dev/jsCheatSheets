@@ -1,13 +1,11 @@
-class Memem {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    sayHay() {
-        return `I am ${this.name} and I am ${this.age} year old`
-    }
+var obj = {
+    foo: 1,
+    bar: [1,2,3]
 }
 
-const someMeme = new Memem('Igor', 19);
-console.log(someMeme)
+Object.freeze(obj)
+
+obj.foo = 2;
+obj.bar.push('mememe')
+
+console.log(obj)

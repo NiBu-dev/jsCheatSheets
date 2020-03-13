@@ -207,7 +207,7 @@ console.log(obj.foo) // undefined
 ```
 
 ## Iteration and detection of properties
-Operations for iterating over and detecing properties are influenced by:
+Operations for iterating over and detecting properties are influenced by:
  - inheritance
  - enumerability
 
@@ -311,8 +311,8 @@ All properties have the following attributes:
  - `[[Enumerable]]` - boolean which makes the prop hidden from some operations
  - `[[Configurable]]` - boolean,if false => the property can't be deleted
 
-## Property descriptors
-Object that encodes attributes of a property:
+## Property descriptors <br>
+Data structure that like object that encodes property metadata - attributes of a property:
 ```
 {
     value: 123,
@@ -334,3 +334,42 @@ via *accessor* the descriptor looks like:
 Property descriptors are used for 2 kind of operations:
  - getting a property: all attributes of a prop are returned as a descriptor
  - defining a property: depends whether a property already exists
+
+
+## Protecting Objects
+
+There are 3 levels of protectin gan object:
+ - preventing extensions
+ - sealing
+ - freezing
+
+### Preventing extensions
+`Object.preventExtensions(obj)` - makes it impossible to add properties to obj, but you can still delete properties.
+
+### Sealing
+`Object.seal(obj)` - prevent extensions and makes all properties unconfigurable. (property descriptor is unchangable -> configurable false)
+
+### Freezing
+`Object.freeze(obj)` - It makes all properties nonwriteable and seals obj, obj is not extensible and all properties are read-only.
+
+**Freezing is shallow** <br>
+Even though he object is frozen, it is not completely immutable - you can change the value of a property: 
+```
+var obj = {
+    foo: 1,
+    bar: [1,2,3]
+}
+
+Object.freeze(obj)
+
+obj.foo = 2;
+obj.bar.push('mememe')
+
+console.log(obj) //
+
+
+{foo: 1, bar: Array(4)}
+foo: 1
+bar: (4) [1, 2, 3, "mememe"]
+__proto__: Object
+```
